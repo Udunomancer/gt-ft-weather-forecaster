@@ -7,6 +7,10 @@ $(document).ready(function() {
     
 
     // ===FUNCTION DEFINITIONS===
+    function citySearch(event) {
+        event.preventDefault();
+        console.log($("#city").val().trim());
+    }
 
 
     // ===FUNCTION CALLS===
@@ -18,8 +22,5 @@ $(document).ready(function() {
     // })
 
     // ===EVENT LISTENERS===
-    $("#city-search").on("submit", function(event) {
-        event.preventDefault();
-        console.log("Search City");
-    })
+    $("#city-search").on("submit", citySearch)
 });
