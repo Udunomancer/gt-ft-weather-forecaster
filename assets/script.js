@@ -22,23 +22,19 @@ $(document).ready(function() {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
+            displayCurrentWthr(response);
         })
     }
 
-    function displayCurrentWthr() {
+    function displayCurrentWthr(response) {
         currentWthrEl.removeClass("visually-hidden")
-        currentWthrCityEl.text()
+        currentWthrCityEl.text(response.name);
+        currentWthrTempEl.text("Temperature: " + response.main.temp);
+        currentWthrHumidEl.text("Humidity: " + response.main.humidity);
+        currentWthrWindEl.text("Wind Speed: " + response.wind.speed);
     }
 
-
     // ===FUNCTION CALLS===
-    // $.ajax({
-    //     url: "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=9bd6449387a57e80b45791c32b2fb94a",
-    //     method: "GET"
-    // }).then(function(response) {
-    //     console.log(response);
-    // })
 
     // ===EVENT LISTENERS===
     $("#city-search").on("submit", citySearch)
