@@ -22,15 +22,17 @@
     <main class="container">
       <div class="row">
         <div class="col-3">
+            <form id="city-search">
           <label for="search-city">Search for a City:</label>
           <br />
           <span>
             <input type="text" id="search-city" />
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" id="submit">Submit</button>
           </span>
+        </form>
         </div>
         <div class="col-9">
-            <div class="card">
+            <div class="card visually-hidden">
                 <div class="card-body">
                     <h3 class="card-title">Atlanta</h2>
                     <p class="card-text">Temperature</p>
@@ -39,7 +41,7 @@
                     <p class="card-text">UV Index</p>
                 </div>
             </div>
-            <div>
+            <div class="visually-hidden">
                 <h4>5-Day Forecast</h4>
                 <div class="row">
                     <div class="col">

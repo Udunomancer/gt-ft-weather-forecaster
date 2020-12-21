@@ -10,12 +10,16 @@ $(document).ready(function() {
 
 
     // ===FUNCTION CALLS===
-    $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=9bd6449387a57e80b45791c32b2fb94a",
-        method: "GET"
-    }).then(function(response) {
-        console.log(response);
-    })
+    // $.ajax({
+    //     url: "https://api.openweathermap.org/data/2.5/weather?q=Atlanta&appid=9bd6449387a57e80b45791c32b2fb94a",
+    //     method: "GET"
+    // }).then(function(response) {
+    //     console.log(response);
+    // })
 
     // ===EVENT LISTENERS===
+    $("#city-search").on("submit", function(event) {
+        event.preventDefault();
+        console.log("Search City");
+    })
 });
