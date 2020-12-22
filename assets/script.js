@@ -13,7 +13,8 @@ $(document).ready(function() {
         uv: "https://api.openweathermap.org/data/2.5/uvi?",
         fiveDay: "https://api.openweathermap.org/data/2.5/forecast?"
     }
-    var apiKey = "&appid=9bd6449387a57e80b45791c32b2fb94a"
+    var apiKey = "9bd6449387a57e80b45791c32b2fb94a"
+    var city;
     var weather = {
         city: "",
         latitude: "",
@@ -75,24 +76,60 @@ $(document).ready(function() {
     
 
     // ===FUNCTION DEFINITIONS===
-    function buildURL(type) {
+    function buildURL(type, latitude, longitude) {
 
         var queryURL = urls[type];
 
-        var queryParams = { "appid":  "9bd6449387a57e80b45791c32b2fb94a" };
+        var queryParams = { "appid":  apiKey };
 
-        queryParams.q = weather.city;
+        if (type === "uv") {
+            queryParams.lat = latitude;
+            queryParams.lon = longitude;
+        } else {
+            queryParams.q = city;
+        }
 
-        console.log(queryURL + $.param(queryParams));
+        return queryURL + $.param(queryParams);
+    }
+
+    function updateCurrentWeather(weather) {
+        
+        currentWthrEl.removeClass("visually-hidden")
+        currentWthrCityEl.text(weather.name);
+        currentWthrTempEl.text("Temperature: " + weather.main.temp);
+        currentWthrHumidEl.text("Humidity: " + weather.main.humidity);
+        currentWthrWindEl.text("Wind Speed: " + weather.wind.speed);
+        console.log(weather);
+
+        $.ajax({
+            url: buildURL("uv", weather.coord.lat, weather.coord.lon),
+            method: "GET"
+        }).then(function(response) {
+            currentWthrUVEl.text("UV Index: " + response.value);
+        })
+        console.log(buildURL("uv"));
     }
 
     function citySearch(event) {
+        
         event.preventDefault();
-        weather.city = $("#city").val().trim();
 
-        buildURL("current");
-        // weather.callAPI(weather.makeCurrentWthrURL, weather.setCurrentWthr);
-        // console.log(weather.currentWthr);
+        //clear();
+
+        city = $("#city").val().trim();
+
+        $.ajax({
+            url: buildURL("current"),
+            method: "GET"
+        }).then(updateCurrentWeather);
+
+        $.ajax({
+            url: buildURL("fiveDay"),
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+        });
+        
         
         // $.ajax({
         //     //url: queryURL,
