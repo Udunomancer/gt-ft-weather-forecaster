@@ -86,20 +86,13 @@ $(document).ready(function () {
       currentWthrUVEl.text("UV Index: ");
       var uvSpanEl = $("<span>");
       uvSpanEl.text(response.value);
-      if (response.value <= 2) {
+      if (response.value <= 3) {
         uvSpanEl
           .addClass("bg-success p-1 rounded")
-          .removeClass("bg-warning bg-orange bg-danger bg-purple");
-      } else if (2 < response.value && response.value <= 5) {
+      } else if (3 < response.value && response.value <= 7) {
         uvSpanEl.addClass("bg-warning p-1 rounded");
-      } else if (5 < response.value && response.value <= 7) {
-        uvSpanEl.addClass("bg-orange p-1 rounded");
-        uvSpanEl.attr("style", "background-color: orange");
-      } else if (7 < response.value && response.value <= 10) {
-        uvSpanEl.addClass("bg-danger text-white p-1 rounded");
       } else {
-        uvSpanEl.addClass("p-1 text-white rounded");
-        uvSpanEl.attr("style", "background-color: purple");
+        uvSpanEl.addClass("bg-danger text-white p-1 rounded");
       }
       currentWthrUVEl.append(uvSpanEl);
     });
