@@ -87,8 +87,7 @@ $(document).ready(function () {
       var uvSpanEl = $("<span>");
       uvSpanEl.text(response.value);
       if (response.value <= 3) {
-        uvSpanEl
-          .addClass("bg-success p-1 rounded")
+        uvSpanEl.addClass("bg-success p-1 rounded");
       } else if (3 < response.value && response.value <= 7) {
         uvSpanEl.addClass("bg-warning p-1 rounded");
       } else {
@@ -179,24 +178,23 @@ $(document).ready(function () {
     //Function to kick off items when city is searched
     //Input: Event
     //Output: none
-    
+
     event.preventDefault();
 
     if ($("#search-city").val() !== "") {
+      city = $("#search-city").val().trim();
 
-        city = $("#search-city").val().trim();
+      storeCities();
 
-        storeCities();
-
-        $.ajax({
+      $.ajax({
         url: buildURL("current"),
         method: "GET",
-        }).then(updateCurrentWeather);
+      }).then(updateCurrentWeather);
 
-        $.ajax({
+      $.ajax({
         url: buildURL("fiveDay"),
         method: "GET",
-        }).then(updateFiveDayWeather);
+      }).then(updateFiveDayWeather);
     }
   }
 
