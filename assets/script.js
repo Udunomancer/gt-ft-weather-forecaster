@@ -54,7 +54,13 @@ $(document).ready(function() {
         var instanceDate = new Date();
 
         //Set city text on title
-        currentWthrCityEl.text(weather.name + " (" + instanceDate.toLocaleDateString("en-US") + ")");
+        currentWthrCityEl.html(weather.name + " (" + instanceDate.toLocaleDateString("en-US") + ")");
+        var icon = $("<span>");
+        var iconImg = $("<img>");
+        iconImg.attr("class", "img-fluid");
+        iconImg.attr("src", makeIconURL(weather.weather[0].icon));
+        icon.append(iconImg)
+        currentWthrCityEl.append(icon);
         currentWthrTempEl.html("Temperature: " + weather.main.temp + " &#176;F");
         currentWthrHumidEl.text("Humidity: " + weather.main.humidity + "%");
         currentWthrWindEl.text("Wind Speed: " + weather.wind.speed + " MPH");
