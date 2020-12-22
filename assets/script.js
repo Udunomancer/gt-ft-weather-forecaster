@@ -6,6 +6,8 @@ $(document).ready(function() {
     var currentWthrHumidEl = $("#current-weather-humidity");
     var currentWthrWindEl = $("#current-weather-wind-speed");
     var currentWthrUVEl = $("#current-weather-uv-index");
+    var fiveDayContainEL = $("#five-day");
+    var fiveDayDisplayEl = $("#five-day-row");
 
     // ===JS VARIABLES===
     var urls = {
@@ -110,10 +112,18 @@ $(document).ready(function() {
         console.log(buildURL("uv"));
     }
 
+    function updateFiveDayWeather(weather) {
+        fiveDayContainEL.removeClass("visually-hidden");
+        fiveDayDisplayEl.children().each(function() {
+            $(this).text("Test");
+        });
+    }
+
     function citySearch(event) {
         
         event.preventDefault();
 
+        //Need this?
         //clear();
 
         city = $("#city").val().trim();
@@ -126,9 +136,7 @@ $(document).ready(function() {
         $.ajax({
             url: buildURL("fiveDay"),
             method: "GET"
-        }).then(function(response) {
-            console.log(response);
-        });
+        }).then(updateFiveDayWeather);
         
         
         // $.ajax({
