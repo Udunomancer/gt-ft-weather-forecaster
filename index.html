@@ -19,6 +19,7 @@
     />
   </head>
   <body>
+    <!-- Navigation -->
     <nav class="navbar navbar-dark bg-dark">
       <div class="container">
         <span class="col-12 navbar-brand mb-0 h1 text-center"
@@ -26,10 +27,11 @@
         >
       </div>
     </nav>
+    <!-- Main -->
     <main class="container mt-3">
       <div class="row">
         <div class="col-3 bg-light rounded">
-          
+          <!-- City Search -->
           <h5 class="my-2">Search for a City:</h5>
           <form id="city-search">
             <div class="input-group mb-3">
@@ -38,10 +40,12 @@
                 <button type="submit" class="btn btn-primary" id="submit"><span class="fas fa-search"></span></button>
             </div>
           </form>
+          <!-- Saved Cities -->
           <ul class="list-group my-2" id="searched-cities">
           </ul>
         </div>
         <div class="col-9">
+            <!-- Current Forecast -->
             <div class="card visually-hidden" id="current-weather">
                 <div class="card-body">
                     <h3 class="card-title" id="current-weather-city"></h2>
@@ -51,6 +55,7 @@
                     <p class="card-text" id="current-weather-uv-index"></p>
                 </div>
             </div>
+            <!-- Five Day Forecast -->
             <div class="visually-hidden" id="five-day">
                 <h4>5-Day Forecast:</h4>
                 <div class="row" id="five-day-row">
