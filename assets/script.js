@@ -47,7 +47,10 @@ $(document).ready(function() {
 
     function updateCurrentWeather(weather) {
         
-        currentWthrEl.removeClass("visually-hidden")
+        //Make current weather panel visible
+        currentWthrEl.removeClass("visually-hidden");
+
+        //Set city text on title
         currentWthrCityEl.text(weather.name);
         currentWthrTempEl.text("Temperature: " + weather.main.temp);
         currentWthrHumidEl.text("Humidity: " + weather.main.humidity);
@@ -70,6 +73,7 @@ $(document).ready(function() {
         fiveDayDisplayEl.children().each(function() {
             current = $(this);
             current.children(".date").text(weather.list[currentDayInArray].dt_txt);
+            current.children(".weather-icon").attr("src", makeIconURL(weather.list[currentDayInArray].weather[0].icon));
             current.children(".temp").text("Temp: " + weather.list[currentDayInArray].main.temp);
             current.children(".humid").text("Humidity: " + weather.list[currentDayInArray].main.humidity);
             currentDayInArray = currentDayInArray + 8;
@@ -95,6 +99,10 @@ $(document).ready(function() {
             cityItem.attr("data-city", searchedCities[i]);
             storedCitiesContainEl.prepend(cityItem);
         }
+    }
+
+    function makeIconURL(icon) {
+        return "http://openweathermap.org/img/wn/" + icon + ".png";
     }
 
     function citySearch(event) {
