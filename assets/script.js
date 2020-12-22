@@ -16,66 +16,7 @@ $(document).ready(function() {
         fiveDay: "https://api.openweathermap.org/data/2.5/forecast?"
     }
     var apiKey = "9bd6449387a57e80b45791c32b2fb94a"
-    var city;
-    var weather = {
-        city: "",
-        latitude: "",
-        longitute: "",
-        currentWthr: {
-            temperature: "",
-            humidity: "",
-            windSpeed: ""
-        },
-        uvIndex: "",
-        fiveDayWthr: {},
-        makeCurrentWthrURL: function() {
-            return this.currentWthr.API.url + this.currentWthr.API.query + this.city + this.APIKey;
-        },
-        makeUVIndexURL: function() {
-
-        },
-        makeFiveDayURL: function() {
-
-        },
-        callAPI: function(calledURL, action) {
-            $.ajax({
-                url: calledURL,
-                method: "GET"
-            }).then(action(response))
-        },
-        setCurrentWthr: function(response) {
-            this.currentWthr.temperature = response.main.temp;
-            this.currentWthr.humidity = response.main.humidity;
-            this.currentWthr.windSpeed = response.wind.speed;
-        },
-        displayWthr: function() {
-            currentWthrEl.removeClass("visually-hidden")
-            currentWthrCityEl.text(this.city);
-            currentWthrTempEl.text("Temperature: " + this.currentWthr.temperature);
-            currentWthrHumidEl.text("Humidity: " + this.currentWthr.humidity);
-            currentWthrWindEl.text("Wind Speed: " + this.currentWthr.windSpeed);
-            console.log(response);
-        }
-    }
-    // var currentWthrAPI = {
-    //     url: "https://api.openweathermap.org/data/2.5/weather",
-    //     query: "?q=",
-    //     city: "",
-    //     APIKey: "&appid=9bd6449387a57e80b45791c32b2fb94a",
-    //     getWeather: function(newCity) {
-    //         this.city = newCity;
-    //         return this.url + this.query + this.city + this.APIKey;
-    //     }
-    // }
-    // var uvAPI = {
-    //     url: "https://api.openweathermap.org/data/2.5/uvi",
-    //     latQ: "?lat=",
-    //     latitude: "",
-    //     lonQ: "?lon=",
-    //     APIKey: "&appid=9bd6449387a57e80b45791c32b2fb94a"
-    // }
-   
-    
+    var city; 
 
     // ===FUNCTION DEFINITIONS===
     function buildURL(type, latitude, longitude) {
@@ -114,17 +55,20 @@ $(document).ready(function() {
 
     function updateFiveDayWeather(weather) {
         fiveDayContainEL.removeClass("visually-hidden");
+        console.log(weather);
+        var currentDayInArray = 3;
         fiveDayDisplayEl.children().each(function() {
-            $(this).text("Test");
+            current = $(this);
+            current.children(".date").text(weather.list[currentDayInArray].dt_txt);
+            current.children(".temp").text("Temp: " + weather.list[currentDayInArray].main.temp);
+            current.children(".humid").text("Humidity: " + weather.list[currentDayInArray].main.humidity);
+            currentDayInArray = currentDayInArray + 8;
         });
     }
 
     function citySearch(event) {
         
         event.preventDefault();
-
-        //Need this?
-        //clear();
 
         city = $("#city").val().trim();
 
@@ -137,29 +81,7 @@ $(document).ready(function() {
             url: buildURL("fiveDay"),
             method: "GET"
         }).then(updateFiveDayWeather);
-        
-        
-        // $.ajax({
-        //     //url: queryURL,
-        //     url: "https://api.openweathermap.org/data/2.5/forecast?q=" + $("#city").val().trim() + "&appid=9bd6449387a57e80b45791c32b2fb94a",
-        //     method: "GET"
-        // }).then(function(response) {
-        //     console.log(response);
-        //     //displayCurrentWthr(response);
-        //     // $.ajax({
-
-        //     // })
-        // })
     }
-
-    // function displayCurrentWthr(response) {
-    //     currentWthrEl.removeClass("visually-hidden")
-    //     currentWthrCityEl.text(response.name);
-    //     currentWthrTempEl.text("Temperature: " + response.main.temp);
-    //     currentWthrHumidEl.text("Humidity: " + response.main.humidity);
-    //     currentWthrWindEl.text("Wind Speed: " + response.wind.speed);
-    //     console.log(response);
-    // }
 
     // ===FUNCTION CALLS===
 
