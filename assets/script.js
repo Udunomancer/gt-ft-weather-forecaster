@@ -74,19 +74,19 @@ $(document).ready(function() {
         storedCitiesContainEl.empty();
 
         for (var i = 0; i < searchedCities.length; i++) {
-            var cityItem = $("<p>");
+            var cityItem = $("<button>");
             cityItem.text(searchedCities[i]);
+            cityItem.addClass("searched-city");
+            cityItem.attr("data-city", searchedCities[i]);
             storedCitiesContainEl.prepend(cityItem);
         }
-
-        
     }
 
     function citySearch(event) {
         
         event.preventDefault();
 
-        city = $("#city").val().trim();
+        city = $("#search-city").val().trim();
 
         storeCities();
 
@@ -101,8 +101,26 @@ $(document).ready(function() {
         }).then(updateFiveDayWeather);
     }
 
+    function cityPull(event) {
+
+        city = $(event.target).text();     
+
+        $.ajax({
+            url: buildURL("current"),
+            method: "GET"
+        }).then(updateCurrentWeather);
+
+        $.ajax({
+            url: buildURL("fiveDay"),
+            method: "GET"
+        }).then(updateFiveDayWeather);
+
+    }
+
     // ===FUNCTION CALLS===
 
     // ===EVENT LISTENERS===
-    $("#city-search").on("submit", citySearch)
+    $("#city-search").on("submit", citySearch);
+
+    $("#searched-cities").on("click", cityPull);
 });
