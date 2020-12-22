@@ -16,7 +16,8 @@ $(document).ready(function() {
         fiveDay: "https://api.openweathermap.org/data/2.5/forecast?"
     }
     var apiKey = "9bd6449387a57e80b45791c32b2fb94a"
-    var city; 
+    var city;
+    var searchedCities = [];
 
     // ===FUNCTION DEFINITIONS===
     function buildURL(type, latitude, longitude) {
@@ -71,6 +72,9 @@ $(document).ready(function() {
         event.preventDefault();
 
         city = $("#city").val().trim();
+
+        searchedCities.push(city);
+        console.log(searchedCities);
 
         $.ajax({
             url: buildURL("current"),
