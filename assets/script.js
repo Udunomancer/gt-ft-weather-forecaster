@@ -40,6 +40,7 @@ $(document).ready(function() {
             queryParams.lon = longitude;
         } else {
             queryParams.q = city;
+            queryParams.units = "imperial";
         }
 
         return queryURL + $.param(queryParams);
@@ -54,9 +55,9 @@ $(document).ready(function() {
 
         //Set city text on title
         currentWthrCityEl.text(weather.name + " (" + instanceDate.toLocaleDateString("en-US") + ")");
-        currentWthrTempEl.text("Temperature: " + weather.main.temp);
-        currentWthrHumidEl.text("Humidity: " + weather.main.humidity);
-        currentWthrWindEl.text("Wind Speed: " + weather.wind.speed);
+        currentWthrTempEl.html("Temperature: " + weather.main.temp + " &#176;F");
+        currentWthrHumidEl.text("Humidity: " + weather.main.humidity + "%");
+        currentWthrWindEl.text("Wind Speed: " + weather.wind.speed + " MPH");
         console.log(weather);
 
         $.ajax({
@@ -77,8 +78,8 @@ $(document).ready(function() {
             var instanceDate = new Date(weather.list[currentDayInArray].dt_txt);
             current.children(".date").text(instanceDate.toLocaleDateString("en-US"));
             current.children(".weather-icon").attr("src", makeIconURL(weather.list[currentDayInArray].weather[0].icon));
-            current.children(".temp").text("Temp: " + weather.list[currentDayInArray].main.temp);
-            current.children(".humid").text("Humidity: " + weather.list[currentDayInArray].main.humidity);
+            current.children(".temp").html("Temp: " + weather.list[currentDayInArray].main.temp + " &#176;F");
+            current.children(".humid").text("Humidity: " + weather.list[currentDayInArray].main.humidity + "%");
             currentDayInArray = currentDayInArray + 8;
         });
     }

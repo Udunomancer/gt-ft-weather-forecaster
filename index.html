@@ -26,21 +26,21 @@
         >
       </div>
     </nav>
-    <main class="container">
+    <main class="container mt-3">
       <div class="row">
-        <div class="col-3 h-100 bg-light">
-          <label for="search-city">Search for a City:</label>
+        <div class="col-3 bg-light rounded">
           
+          <h5 class="my-2">Search for a City:</h5>
           <form id="city-search">
             <div class="input-group mb-3">
+              <label for="search-city" class="sr-only">Search for a City</label>
               <input type="text" id="search-city" class="city form-control"/>
-              <div class="input-group-append">
-                <button class="btn btn-primary" id="submit"><span class="fas fa-search"></span></button>
-              </div>
+              <!-- <div class="input-group-append"> -->
+                <button type="submit" class="btn btn-primary" id="submit"><span class="fas fa-search"></span></button>
+              <!-- </div> -->
             </div>
-            
           </form>
-          <ul class="list-group" id="searched-cities">
+          <ul class="list-group my-2" id="searched-cities">
           </ul>
         </div>
         <div class="col-9">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="visually-hidden" id="five-day">
-                <h4>5-Day Forecast</h4>
+                <h4>5-Day Forecast:</h4>
                 <div class="row" id="five-day-row">
                     <div class="col rounded m-3 bg-primary">
                         <h5 class="date text-white"></h5>
