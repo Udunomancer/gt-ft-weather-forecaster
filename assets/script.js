@@ -7,6 +7,7 @@ $(document).ready(function() {
     var currentWthrHumidEl = $("#current-weather-humidity");
     var currentWthrWindEl = $("#current-weather-wind-speed");
     var currentWthrUVEl = $("#current-weather-uv-index");
+    var currentWthrUVSpanEl = $("#current-weather-uv-num")
     var fiveDayContainEL = $("#five-day");
     var fiveDayDisplayEl = $("#five-day-row");
 
@@ -64,9 +65,24 @@ $(document).ready(function() {
             url: buildURL("uv", weather.coord.lat, weather.coord.lon),
             method: "GET"
         }).then(function(response) {
-            currentWthrUVEl.text("UV Index: " + response.value);
+            currentWthrUVEl.empty();
+            currentWthrUVEl.text("UV Index: ");
+            var uvSpanEl = $("<span>");
+            uvSpanEl.text(response.value);
+            if (response.value <= 2) {
+                uvSpanEl.addClass("bg-success p-1 rounded").removeClass("bg-warning bg-orange bg-danger bg-purple");
+            } else if (2 <response.value && response.value <= 5) {
+                uvSpanEl.addClass("bg-warning p-1 rounded").removeClass("bg-success bg-orange bg-danger bg-purple")
+            } else if (5 < response.value && response.value <= 7) {
+                uvSpanEl.addClass("bg-orange p-1 rounded").removeClass("bg-success bg-warning bg-danger bg-purple")
+            } else if (7 < response.value && response.value <= 10) {
+                uvSpanEl.addClass("bg-danger text-white p-1 rounded").removeClass("bg-success bg-warning bg-orange bg-purple")
+            } else {
+                uvSpanEl.addClass("p-1 text-white rounded").removeClass("bg-success bg-warning bg-orange bg-danger")
+                uvSpanEl.attr("style", "background-color: purple");
+            }
+            currentWthrUVEl.append(uvSpanEl);
         })
-        console.log(buildURL("uv"));
     }
 
     function updateFiveDayWeather(weather) {
