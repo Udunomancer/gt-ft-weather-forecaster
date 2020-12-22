@@ -74,8 +74,9 @@ $(document).ready(function() {
         storedCitiesContainEl.empty();
 
         for (var i = 0; i < searchedCities.length; i++) {
-            var cityItem = $("<button>");
+            var cityItem = $("<li>");
             cityItem.text(searchedCities[i]);
+            cityItem.addClass("list-group-item");
             cityItem.addClass("searched-city");
             cityItem.attr("data-city", searchedCities[i]);
             storedCitiesContainEl.prepend(cityItem);
