@@ -29,13 +29,16 @@
     <main class="container">
       <div class="row">
         <div class="col-3 h-100 bg-light">
+          <label for="search-city">Search for a City:</label>
+          
           <form id="city-search">
-            <label for="search-city">Search for a City:</label>
-            <br />
-            <span>
-              <input type="text" id="search-city" class="city"/>
-              <button class="btn btn-primary fas fa-search" id="submit"></button>
-            </span>
+            <div class="input-group mb-3">
+              <input type="text" id="search-city" class="city form-control"/>
+              <div class="input-group-append">
+                <button class="btn btn-primary" id="submit"><span class="fas fa-search"></span></button>
+              </div>
+            </div>
+            
           </form>
           <ul class="list-group" id="searched-cities">
           </ul>
