@@ -10,6 +10,13 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -21,13 +28,13 @@
     </nav>
     <main class="container">
       <div class="row">
-        <div class="col-3">
+        <div class="col-3 h-100 bg-light">
           <form id="city-search">
             <label for="search-city">Search for a City:</label>
             <br />
             <span>
               <input type="text" id="search-city" class="city"/>
-              <button class="btn btn-primary" id="submit">Submit</button>
+              <button class="btn btn-primary fas fa-search" id="submit"></button>
             </span>
           </form>
           <ul class="list-group" id="searched-cities">
@@ -36,11 +43,11 @@
         <div class="col-9">
             <div class="card visually-hidden" id="current-weather">
                 <div class="card-body">
-                    <h3 class="card-title" id="current-weather-city">Atlanta</h2>
-                    <p class="card-text" id="current-weather-temperature">Temperature</p>
-                    <p class="card-text" id="current-weather-humidity">Humidity</p>
-                    <p class="card-text" id="current-weather-wind-speed">Wind Speed</p>
-                    <p class="card-text" id="current-weather-uv-index">UV Index</p>
+                    <h3 class="card-title" id="current-weather-city"></h2>
+                    <p class="card-text" id="current-weather-temperature"></p>
+                    <p class="card-text" id="current-weather-humidity"></p>
+                    <p class="card-text" id="current-weather-wind-speed"></p>
+                    <p class="card-text" id="current-weather-uv-index"></p>
                 </div>
             </div>
             <div class="visually-hidden" id="five-day">
