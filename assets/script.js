@@ -179,22 +179,25 @@ $(document).ready(function () {
     //Function to kick off items when city is searched
     //Input: Event
     //Output: none
-
+    
     event.preventDefault();
 
-    city = $("#search-city").val().trim();
+    if ($("#search-city").val() !== "") {
 
-    storeCities();
+        city = $("#search-city").val().trim();
 
-    $.ajax({
-      url: buildURL("current"),
-      method: "GET",
-    }).then(updateCurrentWeather);
+        storeCities();
 
-    $.ajax({
-      url: buildURL("fiveDay"),
-      method: "GET",
-    }).then(updateFiveDayWeather);
+        $.ajax({
+        url: buildURL("current"),
+        method: "GET",
+        }).then(updateCurrentWeather);
+
+        $.ajax({
+        url: buildURL("fiveDay"),
+        method: "GET",
+        }).then(updateFiveDayWeather);
+    }
   }
 
   function cityPull(event) {
