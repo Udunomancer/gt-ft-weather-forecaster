@@ -141,14 +141,22 @@ $(document).ready(function () {
     //Function to store a searched city in variable and local storage
     //Input: none
     //Output: none
+    var newCity = true;
+    for (var i = 0; i < searchedCities.length; i++) {
+      if (city.toLowerCase() === searchedCities[i].toLowerCase()) {
+        newCity = false;
+      }
+    }
 
-    searchedCities.push(city);
+    if (newCity === true) {
+      searchedCities.push(city);
 
-    localStorage.setItem("searchedCitiesLS", JSON.stringify(searchedCities));
+      localStorage.setItem("searchedCitiesLS", JSON.stringify(searchedCities));
 
-    storedCitiesContainEl.empty();
+      storedCitiesContainEl.empty();
 
-    displayStoredCities();
+      displayStoredCities();
+    }
   }
 
   function displayStoredCities() {
