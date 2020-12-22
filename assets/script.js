@@ -50,8 +50,10 @@ $(document).ready(function() {
         //Make current weather panel visible
         currentWthrEl.removeClass("visually-hidden");
 
+        var instanceDate = new Date();
+
         //Set city text on title
-        currentWthrCityEl.text(weather.name);
+        currentWthrCityEl.text(weather.name + " (" + instanceDate.toLocaleDateString("en-US") + ")");
         currentWthrTempEl.text("Temperature: " + weather.main.temp);
         currentWthrHumidEl.text("Humidity: " + weather.main.humidity);
         currentWthrWindEl.text("Wind Speed: " + weather.wind.speed);
@@ -72,7 +74,8 @@ $(document).ready(function() {
         var currentDayInArray = 3;
         fiveDayDisplayEl.children().each(function() {
             current = $(this);
-            current.children(".date").text(weather.list[currentDayInArray].dt_txt);
+            var instanceDate = new Date(weather.list[currentDayInArray].dt_txt);
+            current.children(".date").text(instanceDate.toLocaleDateString("en-US"));
             current.children(".weather-icon").attr("src", makeIconURL(weather.list[currentDayInArray].weather[0].icon));
             current.children(".temp").text("Temp: " + weather.list[currentDayInArray].main.temp);
             current.children(".humid").text("Humidity: " + weather.list[currentDayInArray].main.humidity);
