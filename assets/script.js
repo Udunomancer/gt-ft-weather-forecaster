@@ -21,6 +21,14 @@ $(document).ready(function() {
     var searchedCities = [];
 
     // ===FUNCTION DEFINITIONS===
+    function init() {
+        if (localStorage.getItem("searchedCitiesLS") !== null) {
+            searchedCities = JSON.parse(localStorage.getItem("searchedCitiesLS"));
+            
+            displayStoredCities();
+        }
+    }
+
     function buildURL(type, latitude, longitude) {
 
         var queryURL = urls[type];
@@ -71,8 +79,14 @@ $(document).ready(function() {
     function storeCities() {
         searchedCities.push(city);
 
+        localStorage.setItem("searchedCitiesLS", JSON.stringify(searchedCities));
+
         storedCitiesContainEl.empty();
 
+        displayStoredCities();
+    }
+
+    function displayStoredCities() {
         for (var i = 0; i < searchedCities.length; i++) {
             var cityItem = $("<li>");
             cityItem.text(searchedCities[i]);
@@ -119,6 +133,8 @@ $(document).ready(function() {
     }
 
     // ===FUNCTION CALLS===
+    init();
+
 
     // ===EVENT LISTENERS===
     $("#city-search").on("submit", citySearch);
