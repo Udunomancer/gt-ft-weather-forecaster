@@ -7,7 +7,6 @@ $(document).ready(function() {
     var currentWthrHumidEl = $("#current-weather-humidity");
     var currentWthrWindEl = $("#current-weather-wind-speed");
     var currentWthrUVEl = $("#current-weather-uv-index");
-    var currentWthrUVSpanEl = $("#current-weather-uv-num")
     var fiveDayContainEL = $("#five-day");
     var fiveDayDisplayEl = $("#five-day-row");
 
@@ -72,13 +71,14 @@ $(document).ready(function() {
             if (response.value <= 2) {
                 uvSpanEl.addClass("bg-success p-1 rounded").removeClass("bg-warning bg-orange bg-danger bg-purple");
             } else if (2 <response.value && response.value <= 5) {
-                uvSpanEl.addClass("bg-warning p-1 rounded").removeClass("bg-success bg-orange bg-danger bg-purple")
+                uvSpanEl.addClass("bg-warning p-1 rounded");
             } else if (5 < response.value && response.value <= 7) {
-                uvSpanEl.addClass("bg-orange p-1 rounded").removeClass("bg-success bg-warning bg-danger bg-purple")
+                uvSpanEl.addClass("bg-orange p-1 rounded");
+                uvSpanEl.attr("style", "background-color: orange");
             } else if (7 < response.value && response.value <= 10) {
-                uvSpanEl.addClass("bg-danger text-white p-1 rounded").removeClass("bg-success bg-warning bg-orange bg-purple")
+                uvSpanEl.addClass("bg-danger text-white p-1 rounded");
             } else {
-                uvSpanEl.addClass("p-1 text-white rounded").removeClass("bg-success bg-warning bg-orange bg-danger")
+                uvSpanEl.addClass("p-1 text-white rounded");
                 uvSpanEl.attr("style", "background-color: purple");
             }
             currentWthrUVEl.append(uvSpanEl);
