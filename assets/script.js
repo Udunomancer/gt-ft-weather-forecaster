@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // ===DOM VARIABLES===
+    var storedCitiesContainEl = $("#searched-cities");
     var currentWthrEl = $("#current-weather")
     var currentWthrCityEl = $("#current-weather-city");
     var currentWthrTempEl = $("#current-weather-temperature");
@@ -67,14 +68,27 @@ $(document).ready(function() {
         });
     }
 
+    function storeCities() {
+        searchedCities.push(city);
+
+        storedCitiesContainEl.empty();
+
+        for (var i = 0; i < searchedCities.length; i++) {
+            var cityItem = $("<p>");
+            cityItem.text(searchedCities[i]);
+            storedCitiesContainEl.prepend(cityItem);
+        }
+
+        
+    }
+
     function citySearch(event) {
         
         event.preventDefault();
 
         city = $("#city").val().trim();
 
-        searchedCities.push(city);
-        console.log(searchedCities);
+        storeCities();
 
         $.ajax({
             url: buildURL("current"),
