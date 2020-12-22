@@ -76,7 +76,6 @@ $(document).ready(function () {
     currentWthrTempEl.html("Temperature: " + weather.main.temp + " &#176;F");
     currentWthrHumidEl.text("Humidity: " + weather.main.humidity + "%");
     currentWthrWindEl.text("Wind Speed: " + weather.wind.speed + " MPH");
-    console.log(weather);
 
     $.ajax({
       url: buildURL("uv", weather.coord.lat, weather.coord.lon),
@@ -103,7 +102,6 @@ $(document).ready(function () {
     //Output: none
 
     fiveDayContainEL.removeClass("visually-hidden");
-    console.log(weather);
     var currentDayInArray = 3;
     fiveDayDisplayEl.children().each(function () {
       current = $(this);
